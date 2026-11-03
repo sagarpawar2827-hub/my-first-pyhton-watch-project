@@ -1,0 +1,40 @@
+
+from datetime import datetime
+from zoneinfo import ZoneInfo
+import time
+
+# World clock time zones
+cities = {
+    "India - Mumbai": "Asia/Kolkata",
+    "USA - New York": "America/New_York",
+    "USA - Los Angeles": "America/Los_Angeles",
+    "UK - London": "Europe/London",
+    "Japan - Tokyo": "Asia/Tokyo",
+    "UAE - Dubai": "Asia/Dubai",
+    "Australia - Sydney": "Australia/Sydney",
+    "Singapore": "Asia/Singapore"
+}
+
+def world_clock():
+    while True:
+        print("\n" + "=" * 50)
+        print("           🌍 WORLD CLOCK")
+        print("=" * 50)
+
+        for city, timezone in cities.items():
+            current_time = datetime.now(ZoneInfo(timezone))
+            formatted_time = current_time.strftime(
+                "%d-%m-%Y | %I:%M:%S %p"
+            )
+
+            print(f"{city:<25} : {formatted_time}")
+
+        print("=" * 50)
+        print("Press CTRL + C to stop")
+
+        time.sleep(1)
+
+try:
+    world_clock()
+except KeyboardInterrupt:
+    print("\nWorld Clock stopped.")
